@@ -11,7 +11,7 @@ struct cmdarg
 	int threads;				// number of threads we are going to launch
 	unsigned long int seed;			// seed for the random generators
 	INT size;					// target size of random permutations
-	int method;					// model of random graph
+	int method;					// model of random permutation
 							// 0 = read from file
 							// 1 = separable permutations
 	const gsl_rng_type *randgen;	// type of random generator
@@ -103,7 +103,7 @@ static struct argp_option options[] =
 	{"size",		's', "SIZE", 0, 	"Generate a permutation of the integers from 1 to SIZE."},
 	{"outfile",		'o', "OUTFILE", 0, 	"Output simulated permutation to OUTFILE."},
 	{"permclass",		'p', "PERMCLASS", 0, 	"Sample from PERMCLASS. Currently supported: 'sepa' for the class of separable permutations"},
-	{"num", 		'N', "NUM", 0, 		"Simulate NUM many samples. Requires the use of the % symbol in all specified output filenames. For example, --num=100 --outfile=perm%.txt will create the files perm001.graphml, perm002.graphml, ..., perm100.graphml. If the filename does not contain a % symbol then the file will be opend in append mode."},
+	{"num", 		'N', "NUM", 0, 		"Simulate NUM many samples. Requires the use of the % symbol in all specified output filenames. For example, --num=100 --outfile=perm%.txt will create the files perm001.txt, perm002.txt, ..., perm100.txt. If the filename does not contain a % symbol then the file will be opend in append mode."},
 	{"threads", 	't', "THREADS", 0,	"Distribute the workload on THREADS many threads. The default value is the number of CPU cores."}, 
 	{"maxincfile",  'm', "MAXINCFILE", 0, "Output the length of the longest increasing subsequence to MAXINCFILE."},
 	{"inputfile",  'i', "INPUTFILE", 0, "Read a permutation from file INFILE instead of generating it at random."},
