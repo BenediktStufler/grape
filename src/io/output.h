@@ -117,7 +117,7 @@ char *convname(char *outfile, unsigned int counter, unsigned int num, int Tnum) 
 /*
  * Output permutation
  */
-int outperm(struct perm *P, char *outfile, char mode) {
+int outperm(struct perm *P, char *outfile, char *mode) {
 	FILE *outstream = NULL;	
 	INT i;
 
@@ -125,7 +125,7 @@ int outperm(struct perm *P, char *outfile, char mode) {
 	if(outfile == NULL || strlen(outfile) == 0) {
 		outstream = stdout;
 	} else {
-		outstream = fopen(outfile, &mode);
+		outstream = fopen(outfile, mode);
 		if(outstream == NULL) {
 			fprintf(stderr, "Error opening output file %s.\n", outfile);
 			exit(-1);
@@ -149,14 +149,14 @@ int outperm(struct perm *P, char *outfile, char mode) {
 /*
  * Output length of maximal increasing subsequence
  */
-int outmisfile(INT mis, char *outfile, char mode) {
+int outmisfile(INT mis, char *outfile, char *mode) {
 	FILE *outstream = NULL;	
 
 	// open output file if necessary
 	if(outfile == NULL || strlen(outfile) == 0) {
 		outstream = stdout;
 	} else {
-		outstream = fopen(outfile, &mode);
+		outstream = fopen(outfile, mode);
 		if(outstream == NULL) {
 			fprintf(stderr, "Error opening output file %s.\n", outfile);
 			exit(-1);
@@ -181,7 +181,7 @@ int outmisfile(INT mis, char *outfile, char mode) {
 /*
  * Write a sequence of values to a file or stdout
  */
-int outseq(void *seq, INT size, char *outfile, int format, char mode) {
+int outseq(void *seq, INT size, char *outfile, int format, char *mode) {
 	FILE *outstream = NULL;	
 	INT i;
 
@@ -189,7 +189,7 @@ int outseq(void *seq, INT size, char *outfile, int format, char mode) {
 	if(outfile == NULL || strlen(outfile) == 0) {
 		outstream = stdout;
 	} else {
-		outstream = fopen(outfile, &mode);
+		outstream = fopen(outfile, mode);
 		if(outstream == NULL) {
 			fprintf(stderr, "Error opening output file %s.\n", outfile);
 			exit(-1);

@@ -120,6 +120,7 @@ struct perm *parseperm(char * infile) {
  */
 int rpermfile(struct cmdarg *comarg) {
 	struct perm *P;
+	char mode[2] = "w";
 	INT mis;
 
 	/* read permutation from file */
@@ -127,13 +128,13 @@ int rpermfile(struct cmdarg *comarg) {
 
 	/* output permutation if requested */
 	if( comarg->Toutfile ) {
-		outperm(P,comarg->outfile,'w');
+		outperm(P,comarg->outfile,mode);
 	}
 
 	/* output length of longest increasing subsequence if requested */
 	if( comarg->Tmisfile ) {
 		mis = calcmis(P);
-		outmisfile(mis, comarg->misfile, 'w');
+		outmisfile(mis, comarg->misfile, mode);
 	}
 
 	/* clean up */

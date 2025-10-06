@@ -19,12 +19,12 @@ struct cmdarg
 	char *outfile;				// file to which we write permutation
 	int Toutfile;				// has value been set by the user?
 	int Aoutfile;				// does filename contain %?
-	char Woutfile;				// write mode ('w' / 'a' for write / append)
+	char Woutfile[2];				// write mode ('w' / 'a' for write / append)
 
 	char *misfile;				// file to which we write length of longest increasing subsequence 
 	int Tmisfile;				// has value been set by the user?
 	int Amisfile;				// does filename contain %?
-	char Wmisfile;				// write mode ('w' / 'a' for write / append)
+	char Wmisfile[2];				// write mode ('w' / 'a' for write / append)
 
 	char *infile;				// file from which we read the permutation
 	int Tinfile;				// has value been set by the user?
@@ -314,11 +314,13 @@ int getcmdargs(struct cmdarg *comarg, int argc, char **argv) {
 	// Check for each output filename whether it contains a % symbol
 	if( comarg->Toutfile ) {
 		comarg->Aoutfile = checkper(comarg->outfile);
-		comarg->Woutfile = (comarg->Tnum && !(comarg->Aoutfile)) ?'a' :'w';
+		comarg->Woutfile[0] = (comarg->Tnum && !(comarg->Aoutfile)) ?'a' :'w';
+		comarg->Woutfile[1] = 0;
 	}
 	if( comarg->Tmisfile ) {
 		comarg->Amisfile = checkper(comarg->misfile);
-		comarg->Wmisfile = (comarg->Tnum && !(comarg->Amisfile)) ?'a' :'w';
+		comarg->Wmisfile[0] = (comarg->Tnum && !(comarg->Amisfile)) ?'a' :'w';
+		comarg->Wmisfile[0] = 0;
 	}
 
 	return 0;
